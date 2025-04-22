@@ -88,14 +88,13 @@ services:
     ports:
       - 30333:30333 # p2p port
       - 9933:9933 # rpc port
-      - 9944:9944 # ws port
+      - 9944:9933 # redirect all traffic of ws to rpc port
       - 9615:9615 # promethus port
     volumes:
       - ./elysium-testnet-data:/data
     command: [
       "--name", "elysium-dev-node",
       "--dev",
-      "--ws-external",
       "--rpc-external",
       "--rpc-cors", "all"
     ]

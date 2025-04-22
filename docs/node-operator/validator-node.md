@@ -97,7 +97,7 @@ services:
     ports:
       - 30333:30333 # p2p port
       - 9933:9933 # rpc port
-      - 9944:9944 # ws port
+      - 9944:9933 # ws/rpc port
       - 9615:9615 # promethus port
     volumes:
       - ~/elysium-data:/data
@@ -106,7 +106,7 @@ services:
       "--rpc-cors", "all",
       "--unsafe-rpc-external",
       "--rpc-methods=unsafe",
-      "--unsafe-ws-external",
+      "--rpc-max-connections=number of connection"
       "--prometheus-external",
       "--node-key", "your node key from subkey",
       "--chain", "/usr/local/bin/elysiumSpecRaw.json",
@@ -196,10 +196,8 @@ You can use the following optional flags inside the docker-compose command.
 | `--two` | Provides a shortcut for specifying `--name Two --validator` to add session keys for `Two` to the keystore.
 | `--unsafe-pruning` | Forces the node to start with unsafe pruning settings. When running as a validator, it is highly recommended to disable state pruning (that is, archive) which is the default. The node will refuse to start as a validator if pruning is enabled unless this option is set.
 | `--unsafe-rpc-external` | Listens to all RPC interfaces. This option is the same as `--rpc-external`.
-| `--unsafe-ws-external` | Listens to all Websocket interfaces. This option is the same as `--ws-external` but doesn't warn you about it.
 | `--validator` | Starts the node with the authority role and enables it to actively participate in any consensus task that it can (for example, depending on availability of local keys).
 | `-V`, `--version` | Displays version information.
-| `--ws-external` | Listens to all Websocket interfaces. By default, the node only listens locally. Keep in mind that not all RPC methods are safe to be exposed publicly. You can use an RPC proxy server to filter out dangerous methods. You can use `--unsafe-ws-external` to suppress the warning if you understand the risks.
 
 ### Options
 
@@ -255,7 +253,6 @@ You can use the following options inside the docker-compose command.
 | `--tracing-targets <targets>` | Sets a custom profiling filter. The syntax is the same as for logging: `<target>=<level>`.
 | `--wasm-execution <method>` | Specifies the method for executing Wasm runtime code. Valid values are `interpreted`, or `compiled`. The default is `Compiled`.
 | `--wasm-runtime-overrides <path>` | Specifies the path where local WASM runtimes are stored. These runtimes override on-chain runtimes when the version matches.
-| `--ws-max-connections <count>` | Specifies the maximum number of WS RPC server connections.
 | `--rpc-port <port>` | Specifies the TCP port to use for the WebSockets RPC server.
 
-As Elysium is a private chain, you need to contact with Elysium team to allow your Node's PeerID to participate as a validator and earn rewards. 
+As Elysium is a private chain, you need to contact with Elysium team to allow your Node's PeerID to participate as a validator and earn rewards.
