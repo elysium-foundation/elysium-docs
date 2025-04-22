@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docsearch/css": "^3.5.0",
+    "@docsearch/css": "^3.7.0",
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/plugin-google-analytics": "^3.7.0",
     "@docusaurus/plugin-sitemap": "^3.7.0",
